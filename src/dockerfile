@@ -1,9 +1,8 @@
 FROM nginx
 LABEL MAINTAINER "Your name"
-ARG MY_NAME=change my name
-ARG MY_ID=change my id
+ENV MY_HOST localhost
+COPY dotask.sh /
 RUN apt-get update && apt-get install -y git sed
-RUN mkdir /mycode && cd /mycode && git clone https://github.com/ThaiBoonchai/DES424_6322790138
-RUN cp -r /mycode/DES424_6322790138/src /usr/share/nginx/html/mygitweb
-RUN export MY_NAME=$MY_NAME && sed -i 's/<MY_NAME>/'"${MY_NAME}"'/gi' /usr/share/nginx/html/DES424_6322790138/index.html
-RUN export MY_ID=$MY_ID && sed -i 's/<MY_ID>/'"${MY_ID}"'/gi' /usr/share/nginx/html/DES424_6322790138/index.html
+RUN mkdir /mycode && cd /mycode && git clone https://github.com/apichonsiit/testgit.git
+RUN cp -r /mycode/testgit/src /usr/share/nginx/html/mygitweb
+CMD ["sh","/dotask.sh"]
